@@ -1,0 +1,61 @@
+The sample data and tables are nearly fulfilled. 
+
+The repositories are very simple.
+
+My security needed the proper implementation to allow the h2-console. It is also being set up
+for a proper log-in screen. 
+
+https://github.com/Washingtonwei/spring-security-6-h2-console-problem/blob/main/src/main/java/edu/tcu/cs/springsecurity6h2consoleproblem/configuration/SecurityConfiguration.java
+
+https://www.appsdeveloperblog.com/add-h2-database-to-spring-boot-project-with-spring-security/
+
+Currently there are deprecated methods but it was the only way I found to make the h2-console/** view work (side note - I ended up busting it anyway)
+
+Login Structure Plan :
+
+This is obviously not perfect url mapping but its the concept that is important here
+
+                        (admin-login/**) 
+                            Username/Password
+                (admin-login/error)        default success (admin-login/**) -> (admin/**)
+
+
+                            (/login/**)
+                        Employee OR Employer  (both are user roles)
+                Username/Passw         >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>     Username/Passw
+employee-login/error      default success employee/home          employee-login/error     default successemployer/home
+
+
+
+                                (employee/home/**)(only employee roles)
+            display-shifts/**                                         employee-account/**
+                shift-id/details(form for applying to shift)                  employee-account/edit (CRUD methods)
+                            -> reroute to display shifts
+            display-shifts/**
+shiftdetails            upcoming/previous shifts (shifts employee has signed up due for the future and ones from the past)
+
+
+                                (employer/home/**)(only employer roles)
+    employer/myshift-applications/**                                 employer-account/**
+myshift-id/details (includes employee that applied for shift info               employer-account/edit (CRUD)
+and a form to hire/deny)
+                            -> reroute to default employer/home
+
+                        employer/home
+    employer-manage/**
+    (CRUD for company and shifts)
+                ->reroute employer/home
+
+
+
+(I have a drawn piece of paper for the flow of this web application. Just trying to explain how I want to 
+do my security config eventually)
+
+
+
+
+
+Other References
+
+https://www.codejava.net/frameworks/spring-boot/spring-boot-security-authentication-with-jpa-hibernate-and-mysql
+
