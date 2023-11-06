@@ -1,6 +1,7 @@
 package SD.JPAmgmtapp.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,13 +26,12 @@ public class userController {
 
 @GetMapping("/user")
     public List<user> getUsers(){
-        return UserRepository.findAll();
+        return (List<user>) UserRepository.findAll();
     }
 
 @GetMapping("/user/{id}")
-    User desireduser(@PathVariable("id") long id){
-        return UserRepository.findById(id)
-            .orElseThrow(() -> new EmployeeNotFoundException(id));
+    user desireduser(@PathVariable("id") long id){
+        return UserRepository.findById(id);
 	}
 
 @DeleteMapping("/user/{id}")
@@ -40,24 +40,26 @@ public class userController {
   }
 	
 @PostMapping("/createuser")
-    public User createUser(@Valid @RequestBody User user) {
-        return UserRepository.save(user);
+    public user createUser(@Valid @RequestBody user User) {
+        return UserRepository.save(User);
 }
-
 @PutMapping("/updateuser/{id}")
-    User overwriteUser(@RequestBody User userDetails, @PathVariable Long id) {
-        User user= UserRepository.findById(userId)
-            .orElseThrow(() -> new ResourceNotFoundException("No User of this ID >>>" + userId));
+public ResponseEntity < user > overwriteUser(@PathVariable(value = "id") Long id, @Valid @RequestBody user userDetails){
+       
+    userRepository employeeRepository;
+    Optional<user> User = employeeRepository.findById(id);
 
-        user.setfname(userDetails.getfname());
-        user.setlname(userDetails.getlname());
-        user.setusername(userDetails.getusername());
-        user.setpasswrd(userDetails.getpasswrd());
-        user.setinfo(userDetails.getinfo());
-        user.setrole(userDetails.getrole());
+        user.setFirstName(user.getFirstName());
+        user.setLastName(user.getLastName());
+        user.setUsername(user.getUsername());
+        user.setpasswrd(user.getpasswrd());
+        user.setMobileNumber(user.getMobileNumber());
+        user.setEmailAddress(user.getEmailAddress());
+        user.setInfoBio(user.getInfoBio());
+        user.setUserRole(user.getUserRole());
 
-        final User updateduser = userRepository.save(user);
-        return ResponseEntity.ok(updateduser);
+        final user newUser = userRepository.save(User);
+        return ResponseEntity.ok(newUser);
     }
-
 }
+

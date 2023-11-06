@@ -19,35 +19,37 @@ import lombok.ToString;
 @Table(name="users")
 public class user {
     
+    public static final String setFirstName = null;
+
     @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
   @Column(name = "fname", columnDefinition = "VARCHAR(255)")
-    private @Getter @Setter String firstName;
+    private static @Getter @Setter String firstName;
 
     
   @Column(name = "lname", columnDefinition = "VARCHAR(255)")
-    private @Getter @Setter String lastName;
+    private @Getter static @Setter String lastName;
 
 @Column(unique = true, name = "mobile", columnDefinition = "VARCHAR(255)")
-    private @Getter @Setter String mobileNumber;
+    private @Getter static @Setter String mobileNumber;
 
 @Column(unique = true, name = "email", columnDefinition = "VARCHAR(255)")
-    private @Getter @Setter String emailAddress;
+    private @Getter static @Setter String emailAddress;
 
 @Column(name = "username", columnDefinition = "VARCHAR(30)")
-    private @Getter @Setter String username;
+    private @Getter static @Setter String username;
 
 @Column(name = "passwrd", columnDefinition = "VARCHAR(255)")
     private @Getter @Setter String userPassword;
 
 @Column(name = "info", columnDefinition = "TEXT")
-    private @Getter @Setter String infoBio;
+    private @Getter static @Setter String infoBio;
 
 
 @Column(name ="role", columnDefinition ="VARCHAR(10)")
-    private @Getter @Setter String userRole;
+    private @Getter static @Setter String userRole;
 
 @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinTable(
@@ -55,6 +57,17 @@ public class user {
             joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
             inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
     private List<role> roles = new ArrayList<>();
+
+public user orElseThrow(Object object) {
+    return null;
+}
+
+public static Object getpasswrd() {
+    return null;
+}
+
+public static void setpasswrd(Object getpasswrd) {
+}
 
     //@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL): 
     //This annotation is from JPA and specifies that the relationship between User and Role entities is many-to-many. 
