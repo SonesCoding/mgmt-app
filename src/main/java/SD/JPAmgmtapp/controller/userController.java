@@ -44,10 +44,10 @@ public class userController {
         return UserRepository.save(User);
 }
 @PutMapping("/updateuser/{id}")
-public ResponseEntity < user > overwriteUser(@PathVariable(value = "id") Long id, @Valid @RequestBody user userDetails){
-       
-    userRepository userRepository;
-    <user> User =userRepository.findById(id);
+public ResponseEntity < user > overwriteUser(@PathVariable(value = "id") Long id
+, @Valid @RequestBody user userDetails){
+
+    user newUser = UserRepository.findById(id);
 
         user.setFirstName(user.getFirstName());
         user.setLastName(user.getLastName());
@@ -58,8 +58,8 @@ public ResponseEntity < user > overwriteUser(@PathVariable(value = "id") Long id
         user.setInfoBio(user.getInfoBio());
         user.setUserRole(user.getUserRole());
 
-        final user newUser = userRepository.save(User);
-        return ResponseEntity.ok(newUser);
+        final user overwriteUser = UserRepository.save(newUser);
+        return ResponseEntity.ok(userDetails);
     }
 }
 

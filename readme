@@ -65,6 +65,10 @@ https://www.codejava.net/frameworks/spring-boot/spring-boot-security-authenticat
 
 11/4/23
 
-A lot of the API was referencing these two pages: 
+A lot of the API was referencing these three pages: 
 
 https://www.javaguides.net/2019/08/spring-boot-crud-rest-api-spring-data-jpa-h2-database-e
+https://www.geeksforgeeks.org/how-to-make-put-request-in-spring-boot/
+https://spring.io/guides/tutorials/rest/
+
+I have to continue to implement them for shift and company but I would like to perfect the user controller first.
