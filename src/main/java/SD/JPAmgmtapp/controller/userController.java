@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,11 +31,11 @@ public class userController {
     }
 
 @GetMapping("/user/{id}")
-    user desireduser(@PathVariable("id") long id){
+    Optional<user> desireduser(@PathVariable("id") long id){
         return UserRepository.findById(id);
 	}
 
-@DeleteMapping("/user/{id}")
+@DeleteMapping("/user/{id}/delete")
   void deleteuser(@PathVariable Long id) {
     UserRepository.deleteById(id);
   }
@@ -43,12 +44,13 @@ public class userController {
     public user createUser(@Valid @RequestBody user User) {
         return UserRepository.save(User);
 }
-@PutMapping("/updateuser/{id}")
-public ResponseEntity < user > overwriteUser(@PathVariable(value = "id") Long id
-, @Valid @RequestBody user userDetails){
+@PutMapping("/user/{id}/update")
+public ResponseEntity < user > overwriteUser(@PathVariable("id") long id, @RequestBody user User){
 
-    user newUser = UserRepository.findById(id);
+    Optional<user> userDetails = UserRepository.findById(id);
 
+    if (userDetails.isPresent()){
+        user newUser = userDetails.get();
         user.setFirstName(user.getFirstName());
         user.setLastName(user.getLastName());
         user.setUsername(user.getUsername());
@@ -58,8 +60,12 @@ public ResponseEntity < user > overwriteUser(@PathVariable(value = "id") Long id
         user.setInfoBio(user.getInfoBio());
         user.setUserRole(user.getUserRole());
 
-        final user overwriteUser = UserRepository.save(newUser);
-        return ResponseEntity.ok(userDetails);
+        return new ResponseEntity<user>(UserRepository.save(newUser), HttpStatus.OK);
+    }
+    else{
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     }
 }
 
