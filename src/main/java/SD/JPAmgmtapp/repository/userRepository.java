@@ -11,11 +11,11 @@ import java.util.Optional;
 public interface userRepository extends CrudRepository<user, Long> {
 
     Optional<user> findById(long id);
-    List <user> findByFirstName(String firstName);
-   List <user> findByEmailAddress (String emailAddress);
-    user findBylastName(String lastName);
-    List<user> findByRoles(String userRole);
-    List<user> findByUsername(String username);
+    List <user> findByFirstName(String FirstName);
+   List <user> findByEmailAddress (String EmailAddress);
+    user findByLastName(String LastName);
+    List<user> findByRole(String UserRole);
+    List<user> findByUsername(String Username);
     Object save(Optional<user> newUser);
 
 

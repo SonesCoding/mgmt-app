@@ -54,7 +54,7 @@ public ResponseEntity < user > overwriteUser(@PathVariable("id") long id, @Reque
         user.setFirstName(user.getFirstName());
         user.setLastName(user.getLastName());
         user.setUsername(user.getUsername());
-        user.setpasswrd(user.getpasswrd());
+        user.setUserPassword(user.getUserPassword());
         user.setMobileNumber(user.getMobileNumber());
         user.setEmailAddress(user.getEmailAddress());
         user.setInfoBio(user.getInfoBio());
