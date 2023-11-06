@@ -23,21 +23,21 @@ public class shift {
     private Long id;
 
    @Column(name = "shiftStart", columnDefinition = "DATE")
-    private @Getter @Setter String shiftStart;
+        private @Getter @Setter String shiftStart;
 
-@Column(name="shiftEnd", columnDefinition= "DATE")
-    private @Getter @Setter Date shiftEnd;
+    @Column(name="shiftEnd", columnDefinition= "DATE")
+        private @Getter @Setter Date shiftEnd;
 
-@Column(name="info", columnDefinition = "TEXT")
-    private @Getter @Setter String shiftInfo;
+    @Column(name="info", columnDefinition = "TEXT")
+        private @Getter @Setter String shiftInfo;
 
-@Column(name="publishedBy", columnDefinition="VARCHAR(255)")
-    private @Getter @Setter String author;
+    @Column(name="publishedBy", columnDefinition="VARCHAR(255)")
+        private @Getter @Setter String author;
 
-@Column(name="company", columnDefinition = "VARCHAR(255)")
-    private @Getter @Setter String shiftCompany;
+    @Column(name="company", columnDefinition = "VARCHAR(255)")
+        private @Getter @Setter String shiftCompany;
     
-   // @ManyToMany(mappedBy = "shifts"); \
+
           }      
 
 

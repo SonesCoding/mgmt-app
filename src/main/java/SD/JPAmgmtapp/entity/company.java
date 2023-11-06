@@ -12,6 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity
+
 @Table(name="companies")
 public class company {
     
@@ -19,13 +20,13 @@ public class company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-@Column(name="info", columnDefinition = "TEXT")
-    private @Getter @Setter String companyInfo;
+    @Column(name="info", columnDefinition = "TEXT")
+        private @Getter @Setter String companyInfo;
 
-@Column(name="createdBy", columnDefinition="VARCHAR(255)")
-    private @Getter @Setter String author;
+@   Column(name="createdBy", columnDefinition="VARCHAR(255)")
+        private @Getter @Setter String author;
 
-@Column(name="=name", columnDefinition = "VARCHAR(255)")
-    private @Getter @Setter String name;
+    @Column(name="=name", columnDefinition = "VARCHAR(255)")
+        private @Getter @Setter String name;
 
 }
