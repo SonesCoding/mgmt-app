@@ -46,8 +46,8 @@ public class userController {
 @PutMapping("/updateuser/{id}")
 public ResponseEntity < user > overwriteUser(@PathVariable(value = "id") Long id, @Valid @RequestBody user userDetails){
        
-    userRepository employeeRepository;
-    Optional<user> User = employeeRepository.findById(id);
+    userRepository userRepository;
+    <user> User =userRepository.findById(id);
 
         user.setFirstName(user.getFirstName());
         user.setLastName(user.getLastName());
